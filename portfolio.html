@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Jeevan Reddy Yenna — Portfolio</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root{
+            --bg:#0f0f10;
+            --bg-secondary:#121214;
+            --panel:rgba(255,255,255,0.03);
+            --panel-hover:rgba(255,255,255,0.05);
+            --muted:#bdbdbd;
+            --accent:#ffcc00;
+            --glass-border:rgba(255,255,255,0.06);
+            --card-shadow: rgba(0,0,0,0.6);
+            --radius:14px;
+        }
+        *{box-sizing:border-box}
+        html,body{height:100%}
+        body{
+            margin:0;
+            font-family:'Poppins',system-ui,-apple-system,"Segoe UI",Roboto,Arial;
+            background: #0f0f10;
+            color:#fff;
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
+            scroll-behavior:smooth;
+            line-height:1.45;
+        }
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        /* NAV */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: rgba(15, 15, 16, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 999;
+            box-shadow: 0 6px 30px var(--card-shadow);
+            min-height: 70px;
+        }
+
+        /* Make text inside navbar visible */
+        .nav a,
+        .nav span,
+        .nav h1,
+        .nav h2 {
+            color: #ffffff;
+        }
+
+        /* Desktop navigation */
+        #mainNav {
+            display: flex;
+            gap: 20px;
+        }
+
+        /* Hamburger menu - hidden on desktop */
+        .menu-toggle {
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            display: none;
+            background: none;
+            border: none;
+            padding: 5px;
+        }
+
+        /* Mobile styles */
+        @media (max-width: 760px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            #mainNav {
+                position: absolute;
+                top: 100%;
+                right: 0;
+                background: rgba(15, 15, 16, 0.95);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                width: 200px;
+                padding: 20px;
+                border-radius: 0 0 0 15px;
+                border: 1px solid var(--glass-border);
+                border-top: none;
+                transform: translateY(-10px);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+            }
+            
+            #mainNav.show {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            #mainNav a {
+                margin: 10px 0;
+                padding: 8px 12px;
+                border-radius: 8px;
+                transition: background-color 0.2s ease;
+            }
+            
+            #mainNav a:hover {
+                background: rgba(255, 204, 0, 0.1);
+            }
+        }
+
+        /* Push content down so it's not hidden under navbar */
+        body {
+            padding-top: 70px;
+        }
+
+        .brand{display:flex;align-items:center;gap:12px}
+        .logo{
+            width:44px;height:44px;border-radius:10px;
+            background:linear-gradient(135deg,var(--accent), #f5b400);
+            display:grid;place-items:center;color:#111;font-weight:700;
+            box-shadow: 0 4px 14px rgba(255,204,0,0.12);
+            font-size:16px;
+        }
+        .brand h4{margin:0;font-size:14px;font-weight:600;letter-spacing:0.2px}
+        #mainNav a{color:var(--muted);text-decoration:none;font-weight:600}
+        #mainNav a:hover{color:var(--accent)}
+
+        /* HERO */
+        .hero{
+            min-height:92vh;
+            display:flex;align-items:center;justify-content:center;
+            text-align:center;padding:120px 20px 60px;
+            gap:28px;flex-direction:column;
+            background: transparent;
+        }
+        .hero-inner{
+            max-width:1100px;width:100%;
+            display:grid;grid-template-columns:1fr 420px;gap:36px;align-items:center;
+        }
+        .intro{
+            text-align:left;
+        }
+        .eyebrow{color:var(--muted);font-weight:600;letter-spacing:1px}
+        h1{
+            font-size:44px;margin:12px 0;color:var(--accent);
+            text-shadow: 0 6px 30px rgba(255,204,0,0.06);
+        }
+        p.lead{color:#d1d1d1;font-size:16px;margin-bottom:18px}
+        .cta-group {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap; /* ensures icons wrap on smaller screens */
+        }
+        .btn{
+            background:linear-gradient(90deg,var(--accent), #f5b400);
+            color:#111;padding:10px 16px;border-radius:10px;border:0;font-weight:700;
+            cursor:pointer;box-shadow:0 8px 30px rgba(255,204,0,0.12);
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn.alt{
+            background:transparent;color:var(--muted);border:1px solid var(--glass-border);
+        }
+
+        /* SOCIAL ICONS */
+/* SOCIAL ICONS */
+.social-icons {
+    display: flex;
+    align-items: center;
+    gap: 30px; /* Increased space between icons */
+    margin-top: 30px; /* Added space above the icons */
+    margin-left: 5px;
+}
+.social-icons a {
+    color: var(--muted);
+    font-size: 28px; /* Larger icon size */
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+.social-icons a:hover {
+    color: var(--accent);
+    transform: translateY(-2px);
+}
+        /* PROFILE CARD */
+        .profile{
+            background:var(--panel);border-radius:var(--radius);padding:18px;
+            border:1px solid var(--glass-border);backdrop-filter: blur(8px);
+            box-shadow:0 10px 30px rgba(0,0,0,0.6);
+        }
+        .avatar{
+            width:160px;height:160px;border-radius:50%;overflow:hidden;margin-bottom:12px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.6);
+        }
+        .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+        .name{font-weight:700;font-size:18px;margin-bottom:6px;color:#fff}
+        .muted{color:var(--muted);font-size:13px}
+
+        /* SECTIONS */
+        main{
+            max-width:1100px;margin:0 auto;padding:40px 20px 120px;
+            background: transparent;
+        }
+        section{margin:48px 0}
+        section h2{text-align:center;color:var(--accent);font-size:22px;margin-bottom:18px}
+
+        /* GRID LAYOUTS */
+        .grid{
+            display:grid;gap:18px;
+            grid-template-columns: repeat(3, 1fr);
+        }
+        .card{
+            background:var(--panel);
+            border-radius:12px;padding:18px;border:1px solid var(--glass-border);
+            box-shadow:0 10px 30px rgba(0,0,0,0.6);
+            transition:transform .35s ease, box-shadow .35s ease, background-color .35s ease;
+            transform-origin:center;
+            backdrop-filter: blur(8px);
+        }
+        .card h3{margin:0 0 8px 0;color:#fff}
+        .card p{color:var(--muted);font-size:14px;text-align:justify;}
+
+        .card:hover{
+            transform:translateY(-8px) rotateX(3deg);
+            box-shadow:0 20px 60px rgba(0,0,0,0.7);
+            background: var(--panel-hover);
+        }
+
+        /* skill bars */
+        .skill{display:flex;justify-content:space-between;align-items:center;margin:8px 0}
+        .skill .label{color:var(--muted);font-size:13px}
+        .skill .bar{flex:1;height:10px;background:rgba(255,255,255,0.03);margin-left:12px;border-radius:8px;overflow:hidden}
+        .skill .bar > i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent), #ffd24d);border-radius:8px}
+
+        /* projects grid responsive */
+        .projects-grid{display:grid;gap:18px;grid-template-columns:repeat(2,1fr)}
+        .project-card{
+            position:relative;overflow:hidden;border-radius:12px;padding:16px;
+            border:1px solid var(--glass-border);
+            transition:transform .35s ease, background-color .35s ease;
+            background: var(--panel);
+            backdrop-filter: blur(8px);
+        }
+        .project-card:hover{
+            background: var(--panel-hover);
+        }
+        .project-thumb{height:150px;border-radius:10px;margin-bottom:12px;object-fit:cover;width:100%}
+        .project-meta{display:flex;justify-content:space-between;align-items:center}
+        .tags{color:var(--muted);font-size:13px}
+
+        /* contact */
+       
+        .contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Increased gap between icon and text container */
+    color: var(--muted);
+    font-size: 16px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    justify-content: flex-start;
+}
+
+.contact-item:hover {
+    color: var(--accent);
+}
+
+.contact-item i {
+    font-size: 30px; /* Increased icon size */
+    color: #ffd24d;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 4px; /* Space between the 'name' (strong) and 'value' (span) */
+    
+}
+
+.contact-info strong {
+    font-size: 15px; /* Adjust size for the label name if needed */
+    color: #fff; /* Make the label stand out */
+}
+
+.contact-info span {
+    font-size: 16px; /* Adjust size for the value if needed */
+}
+
+        /* footer */
+        footer{
+            margin-top:36px;padding:28px 0;text-align:center;
+            color:var(--muted);font-size:13px;
+            background: transparent;
+        }
+
+        /* responsiveness */
+        @media(max-width:1000px){
+            .hero-inner{grid-template-columns:1fr 360px}
+            .grid{grid-template-columns:repeat(2,1fr)}
+        }
+        @media(max-width:760px){
+            .hero-inner{grid-template-columns:1fr;gap:20px;text-align:center}
+            .profile{display:flex;gap:12px;align-items:center}
+            .projects-grid{grid-template-columns:1fr}
+            .grid{grid-template-columns:1fr}
+            .contact-grid{grid-template-columns:1fr}
+            .nav{padding:10px 15px}
+            
+            /* Mobile profile card adjustments */
+           .profile {
+        /* This rule stacks the profile card elements vertically */
+        flex-direction: column;
+        text-align: center;
+        align-items: center; 
+    }
+    
+    .profile > div {
+        width: 100%;
+        text-align: center;
+    }
+    
+    /* This targets the inner divs for location, email, and resume */
+    .profile > div > div {
+        display: flex;
+        flex-direction: column; /* Stacks the label and value */
+        align-items: center;    /* Centers them */
+        margin-bottom: 8px;     /* Keeps some vertical space */
+    }
+
+    .profile > div > div:last-child {
+        margin-bottom: 0;
+    }
+    
+    /* Align the text inside the location/email/resume divs to the left */
+    .profile > div > div > div {
+        text-align: left;
+    }
+            
+            /* Adjust hero text alignment on mobile */
+            .intro {
+                text-align: center;
+            }
+            
+            /* Center buttons and icons in mobile */
+            .cta-group {
+                justify-content: center;
+            }
+            
+            h1 {
+                font-size: 32px;
+            }
+            .social-icons {
+        justify-content: center;
+        gap: 30px; /* Increased gap for better spacing on mobile */
+    }
+        }
+
+        /* small niceties */
+        a.inline{color:var(--accent);text-decoration:none;font-weight:700}
+    </style>
+</head>
+<body>
+
+<div class="nav" data-aos="fade-down" data-aos-duration="900">
+    <div class="brand">
+        <div class="logo">JR</div>
+        <div>
+            <h4 style="margin:0">Jeevan Reddy Yenna</h4>
+            <div style="font-size:12px;color:var(--muted)">Software Dev • AI • ML</div>
+        </div>
+    </div>
+
+    <button id="menuToggle" class="menu-toggle" aria-label="Toggle navigation">☰</button>
+
+    <nav id="mainNav">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+        <a href="#projects">Projects</a>
+        <a href="#achievements">Achievements</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</div>
+
+<header class="hero">
+    <div class="hero-inner" style="width:100%;max-width:1100px">
+        <div class="intro" data-aos="fade-right" data-aos-duration="900">
+            <div class="eyebrow">Hello — I'm</div>
+            <h1>Jeevan Reddy Yenna</h1>
+            <p class="lead">Aspiring Full-Stack Developer and Machine Learning Enthusiast, looking to apply my skills to build impactful solutions.</p>
+
+            <div class="cta-group">
+                <a class="btn" href="/JEEVAN REDDY YENNA.pdf" target="_blank">Resume</a>
+                <a class="btn alt" href="#contact">Get in Touch</a>
+            </div>
+
+            <div class="social-icons" style="margin-top: 1.5rem;">
+                <a href="https://github.com/Jeevanreddy04" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/jeevan-reddy-3b4a53232/" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="mailto:yjeevanreddy630@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+        </div>
+
+        <aside class="profile" data-aos="fade-left" data-aos-duration="900">
+            <div style="display:flex;flex-direction:column;align-items:center">
+                <div class="avatar">
+                    <img src="/IMG_20250821_215542.png" alt="avatar" />
+                </div>
+                <div class="name">Jeevan Reddy Yenna</div>
+                <div class="muted">Fresher • Software Developer • ML Enthusiast</div>
+            </div>
+
+            <div style="margin-top:14px">
+                <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+                    <div class="muted" style="font-size:13px">Location</div>
+                    <div class="muted" style="font-size:13px">Hyderabad, Telangana</div>
+                </div>
+                <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+                    <div class="muted" style="font-size:13px">Email</div>
+                    <div style="font-size:13px"><a class="inline" href="mailto:yourname@email.com">yjeevanreddy630@gmail.com</a></div>
+                </div>
+                <div style="display:flex;justify-content:space-between">
+                    <div class="muted" style="font-size:13px">Resume</div>
+                    <div style="font-size:13px"><a class="inline" href="/JEEVAN REDDY YENNA.pdf" download>Download</a></div>
+                </div>
+            </div>
+        </aside>
+    </div>
+</header>
+
+<main>
+    <section id="about" data-aos="fade-up">
+        <h2>About Me</h2>
+        <div class="card">
+            <p>
+I am a recent graduate in Computer Science and Engineering with a specialization in Artificial Intelligence and Machine Learning. Passionate about technology and problem-solving, I focus on building intelligent, user-centered applications. My recent work includes <strong>Random Forest–based Disease Detection</strong> and an <strong>Automatic Vacant Parking Slot Management & Booking System</strong>. I enjoy full-stack development, experimenting with machine learning models, and writing clean, maintainable code. I am eager to apply my knowledge and creativity to real-world projects that make a positive impact.
+</p>
+        </div>
+    </section>
+
+    <section id="skills" data-aos="fade-up">
+        <h2>Skills</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Languages & Frameworks</h3>
+                <p class="muted">Java · Sql · Python · HTML · CSS</p>
+                <div style="margin-top:10px">
+                    <div class="skill"><div class="label">Java</div><div class="bar"><i data-level="95"></i></div></div>
+                    <div class="skill"><div class="label">Sql</div><div class="bar"><i data-level="82"></i></div></div>
+                    <div class="skill"><div class="label">Python</div><div class="bar"><i data-level="88"></i></div></div>
+                    <div class="skill"><div class="label">Web (HTML/CSS)</div><div class="bar"><i data-level="86"></i></div></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Tools & Platforms</h3>
+                <p class="muted">Pandas/Numpy · Git · Eclipse · VS Code</p>
+                <div style="margin-top:10px">
+                    <div class="skill"><div class="label">Pandas/Numpy</div><div class="bar"><i data-level="75"></i></div></div>
+                    <div class="skill"><div class="label">Git & GitHub</div><div class="bar"><i data-level="75"></i></div></div>
+                    <div class="skill"><div class="label">Eclipse</div><div class="bar"><i data-level="80"></i></div></div>
+                    <div class="skill"><div class="label">VS Code</div><div class="bar"><i data-level="85"></i></div></div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>Concepts Known</h3>
+                <p class="muted">OS · OOPS · DSA · Cloud Technology · IoT</p>
+                <div style="margin-top:10px">
+                    <div class="skill"><div class="label">Operating System (OS)</div><div class="bar"><i data-level="70"></i></div></div>
+                    <div class="skill"><div class="label">Object-Oriented Programming System</div><div class="bar"><i data-level="95"></i></div></div>
+                    <div class="skill"><div class="label">Data Structures and Algorithms (DSA)</div><div class="bar"><i data-level="75"></i></div></div>
+                    <div class="skill"><div class="label">Cloud Technology</div><div class="bar"><i data-level="70"></i></div></div>
+                    <div class="skill"><div class="label">Internet of Things (IoT)</div><div class="bar"><i data-level="65"></i></div></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Soft Skills</h3>
+                <ul style="color:var(--muted);margin-top:10px">
+                    <li>Team collaboration</li>
+                    <li>Effective communication</li>
+                    <li>Adaptability & time management</li>
+                    <li>Problem-solving mindset</li>
+                    <li>Creativity & critical thinking</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" data-aos="fade-up">
+        <h2>Education</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Bachelor of Technology</h3>
+                <p style="color:var(--accent);font-weight:600;margin:6px 0">Computer Science & Engineering</p>
+                <p style="color:var(--accent);font-size:13px;margin:4px 0">Specialization: Artificial Intelligence & Machine Learning</p>
+                <p class="muted" style="margin:8px 0">Kalasalingam Academy of Research and Education</p>
+                <p class="muted" style="font-size:13px">2021 - 2025 | CGPA: 8.6</p>
+            </div>
+
+            <div class="card">
+                <h3>Higher Secondary Education</h3>
+                <p style="color:var(--accent);font-weight:600;margin:6px 0">MPC</p>
+                <p class="muted" style="margin:8px 0">Pragathi Junior College</p>
+                <p class="muted" style="font-size:13px">2019 - 2021 | Percentage: 97.6%</p>
+            </div>
+
+            <div class="card">
+                <h3>Secondary Education</h3>
+                <p style="color:var(--accent);font-weight:600;margin:6px 0">SSC</p>
+                <p class="muted" style="margin:8px 0">Saandeep High School</p>
+                <p class="muted" style="font-size:13px">2018 - 2019 | CGPA: 10.0</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" data-aos="fade-up">
+        <h2>My Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card card" data-tilt data-tilt-max="8">
+                <img class="project-thumb" src="/Screenshot 2025-08-21 235440.png" alt="project">
+                <h3>Automatic Vacant Parking Slot Management and Booking System</h3>
+                <p class="muted">Developed a system that integrates traditional parking methods with an online booking feature. This system allows users to view available parking slots in real-time and book their preferred slot online. The project enhances user convenience and streamlines parking management for large infrastructures such as shopping malls.</p>
+                <div class="project-meta" style="margin-top:12px">
+                    <div class="tags">Python · SQL · Flask . Front-End</div>
+                    <a href="https://github.com/Jeevanreddy04/Parking_Slot_project.git" class="inline">View →</a>
+                </div>
+            </div>
+
+            <div class="project-card card" data-tilt data-tilt-max="8">
+                <img class="project-thumb" src="/Screenshot 2024-07-14 222932.png" alt="project">
+                <h3>Human Disease Detection Using Machine Learning</h3>
+                <p class="muted">Developed a system utilizing advanced algorithms to predict diseases based on symptoms and user information. Incorporated hospital datasets to train the model. Implemented a user-friendly interface for non-technical users to access predictions. The system provides tailored recommendations for early diagnosis and preventive measures, improving healthcare accessibility.</p>
+                <div class="project-meta" style="margin-top:12px">
+                    <div class="tags">Python · Random Forest Algorithm</div>
+                    <a href="https://github.com/Jeevanreddy04/Human_disease_detection.git" class="inline">View →</a>
+                </div>
+            </div>
+
+            <div class="project-card card" data-tilt data-tilt-max="8">
+                <img class="project-thumb" src="/Iot.png" alt="project">
+                <h3>IoT-Enabled Smart Fan Speed Automation</h3>
+                <p class="muted">Built an IoT-based system where the fan speed adjusts automatically based on temperature and humidity without human intervention. The project focuses on energy efficiency and enhancing user convenience in varying climatic conditions. Designed with low-cost IoT components, it is suitable for both household and industrial applications.</p>
+                <div class="project-meta" style="margin-top:12px">
+                    <div class="tags">Arduino · C Programming · IoT Components</div>
+                    <a href="https://github.com/Jeevanreddy04/IoT-Enabled-Smart-Fan-Speed-Automation.git" class="inline">View →</a>
+                </div>
+            </div>
+
+            <div class="project-card card" data-tilt data-tilt-max="8">
+                <img class="project-thumb" src="/Ibm.png" alt="project">
+                <h3>Healthcare AI System for Pneumonia Detection</h3>
+                <p class="muted">Developed a deep learning-based system to detect pneumonia from chest X-ray images using a Convolutional Neural Network (CNN). Trained the model on hospital datasets and achieved high accuracy in classification. Designed with a user-friendly interface to support early diagnosis, improve healthcare accessibility, and assist medical professionals in clinical decision-making.</p>
+                <div class="project-meta" style="margin-top:12px">
+                    <div class="tags">Python . TensorFlow . CNN . Chest X-Ray Dataset</div>
+                    <a href="https://github.com/Jeevanreddy04/Healthcare-AI-System-for-Pneumonia-Detection.git" class="inline">View →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="achievements" data-aos="fade-up">
+        <h2>Achievements</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>IBM Silver Medal</h3>
+                <p class="muted">Awarded for the Human Disease Detection project presentation.</p>
+            </div>
+            <div class="card">
+                <h3>IBM Certificate of Achievement</h3>
+                <p class="muted">Project Expo recognition.</p>
+            </div>
+            <div class="card">
+                <h3>Online Certifications</h3>
+                <p class="muted">Coursera - HTML & CSS, CodeChef, NPTEL Soft Skills</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" data-aos="fade-up">
+    <h2>Contact</h2>
+    <div class="card">
+        <p style="color:var(--muted); text-align: center; margin-bottom: 24px;"></p>
+        <div class="contact-list">
+            <a class="contact-item" href="tel:+917842245064">
+                <i class="fa-solid fa-phone-alt"></i>
+                <div class="contact-info">
+                    <strong>Phone</strong>
+                    <span>+91 78422 45064</span>
+                </div>
+            </a>
+            <a class="contact-item" href="mailto:yjeevanreddy630@gmail.com">
+                <i class="fa-solid fa-envelope"></i>
+                <div class="contact-info">
+                    <strong>Email</strong>
+                    <span>yjeevanreddy630@gmail.com</span>
+                </div>
+            </a>
+            <a class="contact-item" href="https://www.linkedin.com/in/jeevan-reddy-3b4a53232/" target="_blank">
+                <i class="fa-brands fa-linkedin"></i>
+                <div class="contact-info">
+                    <strong>LinkedIn</strong>
+                    <span>linkedin.com/in/jeevan-reddy-3b4a53232/</span>
+                </div>
+            </a>
+            <a class="contact-item" href="https://github.com/Jeevanreddy04" target="_blank">
+                <i class="fa-brands fa-github"></i>
+                <div class="contact-info">
+                    <strong>GitHub</strong>
+                    <span>github.com/Jeevanreddy04</span>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+    <footer>
+        © 2025 Jeevan Reddy Yenna •  All Rights Reserved. • <a class="inline" href="https://github.com/Jeevanreddy04" target="_blank">github.com/Jeevanreddy04</a>
+    </footer>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.3/vanilla-tilt.min.js"></script>
+
+<script>
+    // Initialize AOS
+    AOS.init({once:true, duration:800, easing:'ease-out-cubic'});
+
+    // GSAP entrance: subtle hero letter glow & nav fade
+    gsap.from("header h1", {y: -20, opacity:0, duration:1.0, delay:0.2, ease:"power3.out"});
+    gsap.from(".eyebrow, .lead, .cta-group", {y: 12, opacity:0, duration:0.9, delay:0.35, stagger:0.08});
+
+    // Animate skill bars when skills section enters
+    gsap.registerPlugin(ScrollTrigger);
+    document.querySelectorAll('.skill i').forEach(function(bar){
+        const level = parseInt(bar.getAttribute('data-level'),10) || 0;
+        gsap.to(bar, {
+            width: level + '%',
+            duration:1.4,
+            ease:'power3.out',
+            scrollTrigger: {
+                trigger: bar,
+                start: 'top 80%',
+                toggleActions: 'play none none none'
+            }
+        });
+    });
+
+    // Tiny parallax-ish floating effect for hero name
+    gsap.to('h1', {y: 6, repeat:-1, yoyo:true, duration:3.5, ease:'sine.inOut', opacity:1});
+
+    // Vanilla Tilt on project cards
+    VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+        max: 8, speed: 600, glare: true, "max-glare": 0.08, scale:1.02
+    });
+
+    // Contact form handler
+    function sendEmail(e){
+        e.preventDefault();
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+        const formMsg = document.getElementById('formMsg');
+
+        // For now we use a simple mailto fallback:
+        if(!name || !email || !message){
+            formMsg.textContent = "Please fill all fields.";
+            return;
+        }
+        const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
+        const mailto = `mailto:yjeevanreddy630@gmail.com?subject=${encodeURIComponent('Portfolio message from '+name)}&body=${body}`;
+        formMsg.textContent = "Opening your email client...";
+        setTimeout(()=>{ window.location.href = mailto; formMsg.textContent = ""; }, 700);
+    }
+
+    // Smooth scroll for nav links (works in all modern browsers)
+    document.querySelectorAll('nav a').forEach(a=>{
+        a.addEventListener('click', (ev)=>{
+            ev.preventDefault();
+            const target = document.querySelector(a.getAttribute('href'));
+            if(target) {
+                const offsetTop = target.offsetTop - 90; // Account for navbar height + padding
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const mainNav = document.getElementById('mainNav');
+    
+    menuToggle.addEventListener('click', () => {
+        mainNav.classList.toggle('show');
+    });
+    
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('#mainNav a').forEach(link => {
+        link.addEventListener('click', () => {
+            mainNav.classList.remove('show');
+        });
+    });
+    
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!menuToggle.contains(e.target) && !mainNav.contains(e.target)) {
+            mainNav.classList.remove('show');
+        }
+    });
+
+</script>
+</body>
+</html>
